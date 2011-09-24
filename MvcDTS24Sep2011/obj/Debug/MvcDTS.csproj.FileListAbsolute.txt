@@ -1,0 +1,15 @@
+C:\Users\liqin\Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\bin\MvcApplication2.dll
+C:\Users\liqin\Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\bin\MvcApplication2.pdb
+C:\Users\liqin\Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\liqin\Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.dll
+C:\Users\liqin\Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.pdb
+C:\Documents and Settings\tools\My Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\bin\MvcApplication2.dll
+C:\Documents and Settings\tools\My Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\bin\MvcApplication2.pdb
+C:\Documents and Settings\tools\My Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\tools\My Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.dll
+C:\Documents and Settings\tools\My Documents\Visual Studio 2010\Projects\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.pdb
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\bin\MvcApplication2.dll
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\bin\MvcApplication2.pdb
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.dll
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Debug\MvcApplication2.pdb

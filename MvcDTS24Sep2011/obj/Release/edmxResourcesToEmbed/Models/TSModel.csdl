@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="TSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="EMPLOYEEs" EntityType="TSModel.EMPLOYEE" />
+    <EntitySet Name="PART_NUM_MAP" EntityType="TSModel.PART_NUM_MAP" />
+    <EntitySet Name="WIP_CODE_MAP_org" EntityType="TSModel.WIP_CODE_MAP_org" />
+    <EntitySet Name="WIP_EVENT" EntityType="TSModel.WIP_EVENT" />
+    <EntitySet Name="WIP_STATE" EntityType="TSModel.WIP_STATE" />
+    <EntitySet Name="vw_dtscodemap" EntityType="TSModel.vw_dtscodemap" />
+  </EntityContainer>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="GLOBAL_ID" />
+    </Key>
+    <Property Name="GLOBAL_ID" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+    <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_INV_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="MANAGER_GID" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PART_NUM_MAP">
+    <Key>
+      <PropertyRef Name="PART_NUM" />
+    </Key>
+    <Property Name="PART_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="TYPE" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+    <Property Name="FAMILY" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+    <Property Name="MODEL_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="CUSTOMER" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="CUST_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="SITE" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="ACTIVE" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NUM_ZONE" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NUM_HEADS" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="INTERFACE" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="DESCRIP" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="PART_NUM_GROUP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WIP_CODE_MAP_org">
+    <Key>
+      <PropertyRef Name="SITE" />
+      <PropertyRef Name="SUB_INV_CODE" />
+      <PropertyRef Name="AREA_CODE" />
+    </Key>
+    <Property Name="SITE" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_INV_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="COST_CENTER" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="DESCRIP" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+    <Property Name="OWNER_EMP_NUM" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WIP_EVENT">
+    <Key>
+      <PropertyRef Name="SERIAL_NUM" />
+      <PropertyRef Name="TRANS_SEQ" />
+      <PropertyRef Name="EVENT_DATE" />
+    </Key>
+    <Property Name="SERIAL_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="TRANS_SEQ" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+    <Property Name="EVENT_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="HDA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="PCBA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="BUILD_GROUP" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_BUILD_GROUP" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="OPERATION" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="EQUIP_ID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="SLOT" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="EMP_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_INV_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="EVENT_STATUS" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="PRIME" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+    <Property Name="PREV_SUB_INV_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="PREV_AREA_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="WIP_STATE">
+    <Key>
+      <PropertyRef Name="SERIAL_NUM" />
+    </Key>
+    <Property Name="SERIAL_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="OPERATION" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+    <Property Name="STATUS" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="BUILD_GROUP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="SBG_FLAG" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+    <Property Name="HDA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="PCBA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="PRIME" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_INV_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="EQUIP_ID" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+    <Property Name="SLOT" Type="Decimal" Precision="9" Scale="0" />
+    <Property Name="PERIOD" Type="DateTime" />
+    <Property Name="RWK_WIP_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+    <Property Name="RWK_CODE" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="vw_dtscodemap">
+    <Key>
+      <PropertyRef Name="SUB_INV_CODE" />
+      <PropertyRef Name="AREA_CODE" />
+    </Key>
+    <Property Name="SUB_INV_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="AREA_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+    <Property Name="DESCRIP" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="OWNER_EMP_NUM" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="SUB_TOTAL" Type="Int32" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="TSModelStoreContainer">
+          <EntitySet Name="EMPLOYEE" EntityType="TSModel.Store.EMPLOYEE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PART_NUM_MAP" EntityType="TSModel.Store.PART_NUM_MAP" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WIP_CODE_MAP_org" EntityType="TSModel.Store.WIP_CODE_MAP_org" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WIP_EVENT" EntityType="TSModel.Store.WIP_EVENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WIP_STATE" EntityType="TSModel.Store.WIP_STATE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vw_dtscodemap" EntityType="TSModel.Store.vw_dtscodemap" store:Type="Views" store:Schema="dbo" store:Name="vw_dtscodemap">
+            <DefiningQuery>SELECT 
+      [vw_dtscodemap].[SUB_INV_CODE] AS [SUB_INV_CODE], 
+      [vw_dtscodemap].[AREA_CODE] AS [AREA_CODE], 
+      [vw_dtscodemap].[DESCRIP] AS [DESCRIP], 
+      [vw_dtscodemap].[OWNER_EMP_NUM] AS [OWNER_EMP_NUM], 
+      [vw_dtscodemap].[SUB_TOTAL] AS [SUB_TOTAL]
+      FROM [dbo].[vw_dtscodemap] AS [vw_dtscodemap]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="GLOBAL_ID" />
+          </Key>
+          <Property Name="GLOBAL_ID" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="FIRST_NAME" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="LAST_NAME" Type="varchar" Nullable="false" MaxLength="40" />
+          <Property Name="EMAIL" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="AREA_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="MANAGER_GID" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="PART_NUM_MAP">
+          <Key>
+            <PropertyRef Name="PART_NUM" />
+          </Key>
+          <Property Name="PART_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="TYPE" Type="varchar" MaxLength="4" />
+          <Property Name="FAMILY" Type="varchar" MaxLength="3" />
+          <Property Name="MODEL_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="CUSTOMER" Type="varchar" MaxLength="20" />
+          <Property Name="CUST_PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="SITE" Type="varchar" MaxLength="5" />
+          <Property Name="ACTIVE" Type="numeric" />
+          <Property Name="NUM_ZONE" Type="numeric" />
+          <Property Name="NUM_HEADS" Type="numeric" />
+          <Property Name="INTERFACE" Type="varchar" MaxLength="6" />
+          <Property Name="DESCRIP" Type="varchar" MaxLength="30" />
+          <Property Name="PART_NUM_GROUP" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="WIP_CODE_MAP_org">
+          <Key>
+            <PropertyRef Name="SITE" />
+            <PropertyRef Name="SUB_INV_CODE" />
+            <PropertyRef Name="AREA_CODE" />
+          </Key>
+          <Property Name="SITE" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="SUB_INV_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="AREA_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="COST_CENTER" Type="varchar" MaxLength="10" />
+          <Property Name="DESCRIP" Type="varchar" MaxLength="30" />
+          <Property Name="OWNER_EMP_NUM" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="WIP_EVENT">
+          <Key>
+            <PropertyRef Name="SERIAL_NUM" />
+            <PropertyRef Name="TRANS_SEQ" />
+            <PropertyRef Name="EVENT_DATE" />
+          </Key>
+          <Property Name="SERIAL_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="TRANS_SEQ" Type="numeric" Nullable="false" Precision="9" />
+          <Property Name="EVENT_DATE" Type="datetime2" Nullable="false" Precision="0" />
+          <Property Name="PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="HDA_PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="PCBA_PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="BUILD_GROUP" Type="varchar" MaxLength="32" />
+          <Property Name="SUB_BUILD_GROUP" Type="varchar" MaxLength="32" />
+          <Property Name="OPERATION" Type="varchar" MaxLength="32" />
+          <Property Name="EQUIP_ID" Type="varchar" MaxLength="32" />
+          <Property Name="SLOT" Type="varchar" MaxLength="32" />
+          <Property Name="EMP_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="32" />
+          <Property Name="AREA_CODE" Type="varchar" MaxLength="32" />
+          <Property Name="EVENT_STATUS" Type="char" MaxLength="1" />
+          <Property Name="PRIME" Type="char" MaxLength="1" />
+          <Property Name="PREV_SUB_INV_CODE" Type="varchar" MaxLength="32" />
+          <Property Name="PREV_AREA_CODE" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="WIP_STATE">
+          <Key>
+            <PropertyRef Name="SERIAL_NUM" />
+          </Key>
+          <Property Name="SERIAL_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="OPERATION" Type="varchar" MaxLength="6" />
+          <Property Name="STATUS" Type="varchar" MaxLength="10" />
+          <Property Name="PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="BUILD_GROUP" Type="varchar" MaxLength="10" />
+          <Property Name="SBG_FLAG" Type="varchar" MaxLength="2" />
+          <Property Name="HDA_PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="PCBA_PART_NUM" Type="varchar" MaxLength="32" />
+          <Property Name="PRIME" Type="varchar" MaxLength="1" />
+          <Property Name="AREA_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="12" />
+          <Property Name="EQUIP_ID" Type="varchar" MaxLength="8" />
+          <Property Name="SLOT" Type="numeric" Precision="9" />
+          <Property Name="PERIOD" Type="datetime" />
+          <Property Name="RWK_WIP_CODE" Type="varchar" MaxLength="32" />
+          <Property Name="RWK_CODE" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'TS.dbo.vw_dtscodemap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vw_dtscodemap">
+          <Key>
+            <PropertyRef Name="SUB_INV_CODE" />
+            <PropertyRef Name="AREA_CODE" />
+          </Key>
+          <Property Name="SUB_INV_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="AREA_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+          <Property Name="DESCRIP" Type="varchar" MaxLength="100" />
+          <Property Name="OWNER_EMP_NUM" Type="varchar" MaxLength="100" />
+          <Property Name="SUB_TOTAL" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'TS.dbo.vw_Family_Descrip' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="vw_Family_Descrip">
+        <Property Name="family" Type="varchar" MaxLength="6" />
+        <Property Name="descrip" Type="varchar" MaxLength="39" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="TSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EMPLOYEEs" EntityType="TSModel.EMPLOYEE" />
+          <EntitySet Name="PART_NUM_MAP" EntityType="TSModel.PART_NUM_MAP" />
+          <EntitySet Name="WIP_CODE_MAP_org" EntityType="TSModel.WIP_CODE_MAP_org" />
+          <EntitySet Name="WIP_EVENT" EntityType="TSModel.WIP_EVENT" />
+          <EntitySet Name="WIP_STATE" EntityType="TSModel.WIP_STATE" />
+          <EntitySet Name="vw_dtscodemap" EntityType="TSModel.vw_dtscodemap" />
+        </EntityContainer>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="GLOBAL_ID" />
+          </Key>
+          <Property Name="GLOBAL_ID" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
+          <Property Name="EMAIL" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_INV_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="MANAGER_GID" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="PART_NUM_MAP">
+          <Key>
+            <PropertyRef Name="PART_NUM" />
+          </Key>
+          <Property Name="PART_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="TYPE" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Name="FAMILY" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
+          <Property Name="MODEL_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="CUSTOMER" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="CUST_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SITE" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="ACTIVE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NUM_ZONE" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NUM_HEADS" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="INTERFACE" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIP" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="PART_NUM_GROUP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WIP_CODE_MAP_org">
+          <Key>
+            <PropertyRef Name="SITE" />
+            <PropertyRef Name="SUB_INV_CODE" />
+            <PropertyRef Name="AREA_CODE" />
+          </Key>
+          <Property Name="SITE" Type="String" Nullable="false" MaxLength="5" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_INV_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="COST_CENTER" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIP" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
+          <Property Name="OWNER_EMP_NUM" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WIP_EVENT">
+          <Key>
+            <PropertyRef Name="SERIAL_NUM" />
+            <PropertyRef Name="TRANS_SEQ" />
+            <PropertyRef Name="EVENT_DATE" />
+          </Key>
+          <Property Name="SERIAL_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="TRANS_SEQ" Type="Decimal" Nullable="false" Precision="9" Scale="0" />
+          <Property Name="EVENT_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="HDA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="PCBA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="BUILD_GROUP" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_BUILD_GROUP" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="OPERATION" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="EQUIP_ID" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SLOT" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="EMP_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_INV_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="EVENT_STATUS" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PRIME" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="PREV_SUB_INV_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="PREV_AREA_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="WIP_STATE">
+          <Key>
+            <PropertyRef Name="SERIAL_NUM" />
+          </Key>
+          <Property Name="SERIAL_NUM" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="OPERATION" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
+          <Property Name="STATUS" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="BUILD_GROUP" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+          <Property Name="SBG_FLAG" Type="String" MaxLength="2" Unicode="false" FixedLength="false" />
+          <Property Name="HDA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="PCBA_PART_NUM" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="PRIME" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_INV_CODE" Type="String" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="EQUIP_ID" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="SLOT" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="PERIOD" Type="DateTime" />
+          <Property Name="RWK_WIP_CODE" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <Property Name="RWK_CODE" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="vw_dtscodemap">
+          <Key>
+            <PropertyRef Name="SUB_INV_CODE" />
+            <PropertyRef Name="AREA_CODE" />
+          </Key>
+          <Property Name="SUB_INV_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="AREA_CODE" Type="String" Nullable="false" MaxLength="12" Unicode="false" FixedLength="false" />
+          <Property Name="DESCRIP" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="OWNER_EMP_NUM" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="SUB_TOTAL" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TSModelStoreContainer" CdmEntityContainer="TSEntities">
+          <EntitySetMapping Name="EMPLOYEEs"><EntityTypeMapping TypeName="TSModel.EMPLOYEE"><MappingFragment StoreEntitySet="EMPLOYEE">
+            <ScalarProperty Name="GLOBAL_ID" ColumnName="GLOBAL_ID" />
+            <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+            <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+            <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+            <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+            <ScalarProperty Name="MANAGER_GID" ColumnName="MANAGER_GID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PART_NUM_MAP"><EntityTypeMapping TypeName="TSModel.PART_NUM_MAP"><MappingFragment StoreEntitySet="PART_NUM_MAP">
+            <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+            <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+            <ScalarProperty Name="FAMILY" ColumnName="FAMILY" />
+            <ScalarProperty Name="MODEL_NUM" ColumnName="MODEL_NUM" />
+            <ScalarProperty Name="CUSTOMER" ColumnName="CUSTOMER" />
+            <ScalarProperty Name="CUST_PART_NUM" ColumnName="CUST_PART_NUM" />
+            <ScalarProperty Name="SITE" ColumnName="SITE" />
+            <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+            <ScalarProperty Name="NUM_ZONE" ColumnName="NUM_ZONE" />
+            <ScalarProperty Name="NUM_HEADS" ColumnName="NUM_HEADS" />
+            <ScalarProperty Name="INTERFACE" ColumnName="INTERFACE" />
+            <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+            <ScalarProperty Name="PART_NUM_GROUP" ColumnName="PART_NUM_GROUP" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WIP_CODE_MAP_org"><EntityTypeMapping TypeName="TSModel.WIP_CODE_MAP_org"><MappingFragment StoreEntitySet="WIP_CODE_MAP_org">
+            <ScalarProperty Name="SITE" ColumnName="SITE" />
+            <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+            <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+            <ScalarProperty Name="COST_CENTER" ColumnName="COST_CENTER" />
+            <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+            <ScalarProperty Name="OWNER_EMP_NUM" ColumnName="OWNER_EMP_NUM" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WIP_EVENT"><EntityTypeMapping TypeName="TSModel.WIP_EVENT"><MappingFragment StoreEntitySet="WIP_EVENT">
+            <ScalarProperty Name="SERIAL_NUM" ColumnName="SERIAL_NUM" />
+            <ScalarProperty Name="TRANS_SEQ" ColumnName="TRANS_SEQ" />
+            <ScalarProperty Name="EVENT_DATE" ColumnName="EVENT_DATE" />
+            <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+            <ScalarProperty Name="HDA_PART_NUM" ColumnName="HDA_PART_NUM" />
+            <ScalarProperty Name="PCBA_PART_NUM" ColumnName="PCBA_PART_NUM" />
+            <ScalarProperty Name="BUILD_GROUP" ColumnName="BUILD_GROUP" />
+            <ScalarProperty Name="SUB_BUILD_GROUP" ColumnName="SUB_BUILD_GROUP" />
+            <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+            <ScalarProperty Name="EQUIP_ID" ColumnName="EQUIP_ID" />
+            <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+            <ScalarProperty Name="EMP_NUM" ColumnName="EMP_NUM" />
+            <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+            <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+            <ScalarProperty Name="EVENT_STATUS" ColumnName="EVENT_STATUS" />
+            <ScalarProperty Name="PRIME" ColumnName="PRIME" />
+            <ScalarProperty Name="PREV_SUB_INV_CODE" ColumnName="PREV_SUB_INV_CODE" />
+            <ScalarProperty Name="PREV_AREA_CODE" ColumnName="PREV_AREA_CODE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="WIP_STATE"><EntityTypeMapping TypeName="TSModel.WIP_STATE"><MappingFragment StoreEntitySet="WIP_STATE">
+            <ScalarProperty Name="SERIAL_NUM" ColumnName="SERIAL_NUM" />
+            <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+            <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+            <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+            <ScalarProperty Name="BUILD_GROUP" ColumnName="BUILD_GROUP" />
+            <ScalarProperty Name="SBG_FLAG" ColumnName="SBG_FLAG" />
+            <ScalarProperty Name="HDA_PART_NUM" ColumnName="HDA_PART_NUM" />
+            <ScalarProperty Name="PCBA_PART_NUM" ColumnName="PCBA_PART_NUM" />
+            <ScalarProperty Name="PRIME" ColumnName="PRIME" />
+            <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+            <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+            <ScalarProperty Name="EQUIP_ID" ColumnName="EQUIP_ID" />
+            <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+            <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+            <ScalarProperty Name="RWK_WIP_CODE" ColumnName="RWK_WIP_CODE" />
+            <ScalarProperty Name="RWK_CODE" ColumnName="RWK_CODE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="vw_dtscodemap"><EntityTypeMapping TypeName="TSModel.vw_dtscodemap"><MappingFragment StoreEntitySet="vw_dtscodemap">
+            <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+            <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+            <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+            <ScalarProperty Name="OWNER_EMP_NUM" ColumnName="OWNER_EMP_NUM" />
+            <ScalarProperty Name="SUB_TOTAL" ColumnName="SUB_TOTAL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="TSModel">
+        <EntityTypeShape EntityType="TSModel.EMPLOYEE" Width="1.5" PointX="0.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSModel.PART_NUM_MAP" Width="1.5" PointX="4.75" PointY="0.5" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSModel.WIP_CODE_MAP_org" Width="1.875" PointX="7.25" PointY="0.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSModel.WIP_EVENT" Width="1.5" PointX="4.375" PointY="4.25" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSModel.WIP_STATE" Width="1.5" PointX="7.25" PointY="3.375" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="TSModel.vw_dtscodemap" Width="1.5" PointX="0.875" PointY="3.75" Height="1.9802864583333326" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="TSModelStoreContainer">
+    <EntitySet Name="EMPLOYEE" EntityType="TSModel.Store.EMPLOYEE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PART_NUM_MAP" EntityType="TSModel.Store.PART_NUM_MAP" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WIP_CODE_MAP_org" EntityType="TSModel.Store.WIP_CODE_MAP_org" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WIP_EVENT" EntityType="TSModel.Store.WIP_EVENT" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WIP_STATE" EntityType="TSModel.Store.WIP_STATE" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="vw_dtscodemap" EntityType="TSModel.Store.vw_dtscodemap" store:Type="Views" store:Schema="dbo" store:Name="vw_dtscodemap">
+      <DefiningQuery>SELECT 
+      [vw_dtscodemap].[SUB_INV_CODE] AS [SUB_INV_CODE], 
+      [vw_dtscodemap].[AREA_CODE] AS [AREA_CODE], 
+      [vw_dtscodemap].[DESCRIP] AS [DESCRIP], 
+      [vw_dtscodemap].[OWNER_EMP_NUM] AS [OWNER_EMP_NUM], 
+      [vw_dtscodemap].[SUB_TOTAL] AS [SUB_TOTAL]
+      FROM [dbo].[vw_dtscodemap] AS [vw_dtscodemap]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="GLOBAL_ID" />
+    </Key>
+    <Property Name="GLOBAL_ID" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="FIRST_NAME" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="LAST_NAME" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="EMAIL" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="AREA_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="MANAGER_GID" Type="varchar" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="PART_NUM_MAP">
+    <Key>
+      <PropertyRef Name="PART_NUM" />
+    </Key>
+    <Property Name="PART_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="TYPE" Type="varchar" MaxLength="4" />
+    <Property Name="FAMILY" Type="varchar" MaxLength="3" />
+    <Property Name="MODEL_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="CUSTOMER" Type="varchar" MaxLength="20" />
+    <Property Name="CUST_PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="SITE" Type="varchar" MaxLength="5" />
+    <Property Name="ACTIVE" Type="numeric" />
+    <Property Name="NUM_ZONE" Type="numeric" />
+    <Property Name="NUM_HEADS" Type="numeric" />
+    <Property Name="INTERFACE" Type="varchar" MaxLength="6" />
+    <Property Name="DESCRIP" Type="varchar" MaxLength="30" />
+    <Property Name="PART_NUM_GROUP" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="WIP_CODE_MAP_org">
+    <Key>
+      <PropertyRef Name="SITE" />
+      <PropertyRef Name="SUB_INV_CODE" />
+      <PropertyRef Name="AREA_CODE" />
+    </Key>
+    <Property Name="SITE" Type="varchar" Nullable="false" MaxLength="5" />
+    <Property Name="SUB_INV_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="AREA_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="COST_CENTER" Type="varchar" MaxLength="10" />
+    <Property Name="DESCRIP" Type="varchar" MaxLength="30" />
+    <Property Name="OWNER_EMP_NUM" Type="varchar" MaxLength="64" />
+  </EntityType>
+  <EntityType Name="WIP_EVENT">
+    <Key>
+      <PropertyRef Name="SERIAL_NUM" />
+      <PropertyRef Name="TRANS_SEQ" />
+      <PropertyRef Name="EVENT_DATE" />
+    </Key>
+    <Property Name="SERIAL_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="TRANS_SEQ" Type="numeric" Nullable="false" Precision="9" />
+    <Property Name="EVENT_DATE" Type="datetime2" Nullable="false" Precision="0" />
+    <Property Name="PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="HDA_PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="PCBA_PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="BUILD_GROUP" Type="varchar" MaxLength="32" />
+    <Property Name="SUB_BUILD_GROUP" Type="varchar" MaxLength="32" />
+    <Property Name="OPERATION" Type="varchar" MaxLength="32" />
+    <Property Name="EQUIP_ID" Type="varchar" MaxLength="32" />
+    <Property Name="SLOT" Type="varchar" MaxLength="32" />
+    <Property Name="EMP_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="32" />
+    <Property Name="AREA_CODE" Type="varchar" MaxLength="32" />
+    <Property Name="EVENT_STATUS" Type="char" MaxLength="1" />
+    <Property Name="PRIME" Type="char" MaxLength="1" />
+    <Property Name="PREV_SUB_INV_CODE" Type="varchar" MaxLength="32" />
+    <Property Name="PREV_AREA_CODE" Type="varchar" MaxLength="32" />
+  </EntityType>
+  <EntityType Name="WIP_STATE">
+    <Key>
+      <PropertyRef Name="SERIAL_NUM" />
+    </Key>
+    <Property Name="SERIAL_NUM" Type="varchar" Nullable="false" MaxLength="32" />
+    <Property Name="OPERATION" Type="varchar" MaxLength="6" />
+    <Property Name="STATUS" Type="varchar" MaxLength="10" />
+    <Property Name="PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="BUILD_GROUP" Type="varchar" MaxLength="10" />
+    <Property Name="SBG_FLAG" Type="varchar" MaxLength="2" />
+    <Property Name="HDA_PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="PCBA_PART_NUM" Type="varchar" MaxLength="32" />
+    <Property Name="PRIME" Type="varchar" MaxLength="1" />
+    <Property Name="AREA_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="SUB_INV_CODE" Type="varchar" MaxLength="12" />
+    <Property Name="EQUIP_ID" Type="varchar" MaxLength="8" />
+    <Property Name="SLOT" Type="numeric" Precision="9" />
+    <Property Name="PERIOD" Type="datetime" />
+    <Property Name="RWK_WIP_CODE" Type="varchar" MaxLength="32" />
+    <Property Name="RWK_CODE" Type="varchar" MaxLength="8" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'TS.dbo.vw_dtscodemap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="vw_dtscodemap">
+    <Key>
+      <PropertyRef Name="SUB_INV_CODE" />
+      <PropertyRef Name="AREA_CODE" />
+    </Key>
+    <Property Name="SUB_INV_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="AREA_CODE" Type="varchar" Nullable="false" MaxLength="12" />
+    <Property Name="DESCRIP" Type="varchar" MaxLength="100" />
+    <Property Name="OWNER_EMP_NUM" Type="varchar" MaxLength="100" />
+    <Property Name="SUB_TOTAL" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6013: The table/view 'TS.dbo.vw_Family_Descrip' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="vw_Family_Descrip">
+        <Property Name="family" Type="varchar" MaxLength="6" />
+        <Property Name="descrip" Type="varchar" MaxLength="39" />
+      </EntityType>-->
+</Schema>

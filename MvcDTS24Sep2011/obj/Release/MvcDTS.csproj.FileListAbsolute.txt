@@ -1,0 +1,5 @@
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Release\ResolveAssemblyReference.cache
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Release\MvcApplication2.dll
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\bin\MvcApplication2.dll
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\bin\MvcApplication2.pdb
+C:\Users\raohui\Downloads\MvcDTS\MvcDTS\obj\Release\MvcApplication2.pdb

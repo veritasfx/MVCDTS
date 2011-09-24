@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TSModelStoreContainer" CdmEntityContainer="TSEntities">
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="TSModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="GLOBAL_ID" ColumnName="GLOBAL_ID" />
+          <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+          <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+          <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+          <ScalarProperty Name="MANAGER_GID" ColumnName="MANAGER_GID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PART_NUM_MAP">
+      <EntityTypeMapping TypeName="TSModel.PART_NUM_MAP">
+        <MappingFragment StoreEntitySet="PART_NUM_MAP">
+          <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="FAMILY" ColumnName="FAMILY" />
+          <ScalarProperty Name="MODEL_NUM" ColumnName="MODEL_NUM" />
+          <ScalarProperty Name="CUSTOMER" ColumnName="CUSTOMER" />
+          <ScalarProperty Name="CUST_PART_NUM" ColumnName="CUST_PART_NUM" />
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="NUM_ZONE" ColumnName="NUM_ZONE" />
+          <ScalarProperty Name="NUM_HEADS" ColumnName="NUM_HEADS" />
+          <ScalarProperty Name="INTERFACE" ColumnName="INTERFACE" />
+          <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+          <ScalarProperty Name="PART_NUM_GROUP" ColumnName="PART_NUM_GROUP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_CODE_MAP_org">
+      <EntityTypeMapping TypeName="TSModel.WIP_CODE_MAP_org">
+        <MappingFragment StoreEntitySet="WIP_CODE_MAP_org">
+          <ScalarProperty Name="SITE" ColumnName="SITE" />
+          <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+          <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+          <ScalarProperty Name="COST_CENTER" ColumnName="COST_CENTER" />
+          <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+          <ScalarProperty Name="OWNER_EMP_NUM" ColumnName="OWNER_EMP_NUM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_EVENT">
+      <EntityTypeMapping TypeName="TSModel.WIP_EVENT">
+        <MappingFragment StoreEntitySet="WIP_EVENT">
+          <ScalarProperty Name="SERIAL_NUM" ColumnName="SERIAL_NUM" />
+          <ScalarProperty Name="TRANS_SEQ" ColumnName="TRANS_SEQ" />
+          <ScalarProperty Name="EVENT_DATE" ColumnName="EVENT_DATE" />
+          <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+          <ScalarProperty Name="HDA_PART_NUM" ColumnName="HDA_PART_NUM" />
+          <ScalarProperty Name="PCBA_PART_NUM" ColumnName="PCBA_PART_NUM" />
+          <ScalarProperty Name="BUILD_GROUP" ColumnName="BUILD_GROUP" />
+          <ScalarProperty Name="SUB_BUILD_GROUP" ColumnName="SUB_BUILD_GROUP" />
+          <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+          <ScalarProperty Name="EQUIP_ID" ColumnName="EQUIP_ID" />
+          <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+          <ScalarProperty Name="EMP_NUM" ColumnName="EMP_NUM" />
+          <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+          <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+          <ScalarProperty Name="EVENT_STATUS" ColumnName="EVENT_STATUS" />
+          <ScalarProperty Name="PRIME" ColumnName="PRIME" />
+          <ScalarProperty Name="PREV_SUB_INV_CODE" ColumnName="PREV_SUB_INV_CODE" />
+          <ScalarProperty Name="PREV_AREA_CODE" ColumnName="PREV_AREA_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WIP_STATE">
+      <EntityTypeMapping TypeName="TSModel.WIP_STATE">
+        <MappingFragment StoreEntitySet="WIP_STATE">
+          <ScalarProperty Name="SERIAL_NUM" ColumnName="SERIAL_NUM" />
+          <ScalarProperty Name="OPERATION" ColumnName="OPERATION" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="PART_NUM" ColumnName="PART_NUM" />
+          <ScalarProperty Name="BUILD_GROUP" ColumnName="BUILD_GROUP" />
+          <ScalarProperty Name="SBG_FLAG" ColumnName="SBG_FLAG" />
+          <ScalarProperty Name="HDA_PART_NUM" ColumnName="HDA_PART_NUM" />
+          <ScalarProperty Name="PCBA_PART_NUM" ColumnName="PCBA_PART_NUM" />
+          <ScalarProperty Name="PRIME" ColumnName="PRIME" />
+          <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+          <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+          <ScalarProperty Name="EQUIP_ID" ColumnName="EQUIP_ID" />
+          <ScalarProperty Name="SLOT" ColumnName="SLOT" />
+          <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+          <ScalarProperty Name="RWK_WIP_CODE" ColumnName="RWK_WIP_CODE" />
+          <ScalarProperty Name="RWK_CODE" ColumnName="RWK_CODE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_dtscodemap">
+      <EntityTypeMapping TypeName="TSModel.vw_dtscodemap">
+        <MappingFragment StoreEntitySet="vw_dtscodemap">
+          <ScalarProperty Name="SUB_INV_CODE" ColumnName="SUB_INV_CODE" />
+          <ScalarProperty Name="AREA_CODE" ColumnName="AREA_CODE" />
+          <ScalarProperty Name="DESCRIP" ColumnName="DESCRIP" />
+          <ScalarProperty Name="OWNER_EMP_NUM" ColumnName="OWNER_EMP_NUM" />
+          <ScalarProperty Name="SUB_TOTAL" ColumnName="SUB_TOTAL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

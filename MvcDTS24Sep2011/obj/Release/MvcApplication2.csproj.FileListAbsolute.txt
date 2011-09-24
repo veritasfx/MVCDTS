@@ -1,0 +1,6 @@
+C:\temp\MvcApplication2\MvcApplication2\obj\Release\ResolveAssemblyReference.cache
+C:\temp\MvcApplication2\MvcApplication2\bin\MvcApplication2.dll
+C:\temp\MvcApplication2\MvcApplication2\bin\MvcApplication2.pdb
+C:\temp\MvcApplication2\MvcApplication2\obj\Release\MvcApplication2.dll
+C:\temp\MvcApplication2\MvcApplication2\obj\Release\MvcApplication2.pdb
+C:\temp\MvcApplication2\MvcApplication2\bin\AjaxControlToolkit.dll
